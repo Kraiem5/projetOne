@@ -1,0 +1,12 @@
+<div class="d2">
+    <h3 class="mb-20">liste des coctails</h3>
+    <ul class="mb-20">
+        <li  (click)="selectCocktail(index)" *ngFor="let coc of cocktails ;
+         let index = index">
+            {{coc.name}}
+        </li>
+    </ul>
+    <div>
+        <button class="btn btn-primary">ajouter un coctail</button>
+    </div>
+</div>

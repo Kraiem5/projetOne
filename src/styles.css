@@ -1,0 +1,116 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('~bootstrap/dist/css/bootstrap.min.css');
+.container{
+    padding: 20px;
+    max-width: 1200px;
+    display: block;
+    margin: auto;
+}
+.d-flex{
+    display: flex;
+
+}
+.flex-row{
+    flex-direction: row;
+}
+.flex-column{
+    flex-direction: column;
+}
+.flex-justify-content-center{
+    justify-content: center;
+}
+.flex-justify-content-between{
+    justify-content: space-between;
+}
+.flex-align-items-center{
+    align-items: center;
+}
+.flex-align-items-between{
+    align-items: space-between;
+}
+.flex-fill{
+    flex: 1 1 auto;
+}
+.flex-50{
+    flex: 1 1 50%;
+}
+.p-10{
+    padding: 10px;
+}
+.p-20{
+    padding: 20px;
+}
+.pr{
+    padding-right: 10px;
+}
+.pl{
+    padding-left: 10px;
+}
+.m-10{
+    margin: 10px;
+}
+.m-20{
+    margin: 20px;
+}
+.d1{
+    border: 1px solid red;
+}
+.d2{
+border:1px solid green;
+}
+.mb-20{
+    margin-bottom: 20px;
+}
+
+li{
+   padding: 10px 15px;
+    border: 1px solid lightgray;
+    border-top: 0;
+    transition: all 0.4ms;
+   
+}
+li:hover{
+    background-color: blueviolet;
+    color: azure;
+    font-weight: 500;
+    cursor: pointer;
+}
+li:first-child{
+    border-top: 1px solid lightgray;
+    border-top-left-radius: 5px;
+    border-top-right-radius:5px ;
+}
+li:last-child{
+    
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius:5px ;
+    
+}
+.btn{
+    padding: 10px 15px;
+    background-color: white;
+    font-weight: 500;
+    border: 0px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.btn-primary{
+    background-color: blueviolet;
+    color: white;
+}
+.btn:hover{
+    background-color: blue;
+    color: white;
+    transition : background-color 0.4s ;
+}
+.badge {
+    background-color: blueviolet;
+    border-radius: 3px;
+    padding: 2px 5px;
+    color: white;
+    font-size: 15px;
+    font-weight: 500;
+  }
+  .active{
+    background-color: black;
+  }
