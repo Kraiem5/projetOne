@@ -6,7 +6,7 @@ import { Cocktail } from '../coctail.interface';
   providedIn: 'root'
 })
 export class CocktailService {
-  public cocktails$:BehaviorSubject<Cocktail[]>=new BehaviorSubject([
+  public cocktails$: BehaviorSubject<Cocktail[]> = new BehaviorSubject([
     {
       name: 'mojito',
       img: 'https://foodal.com/wp-content/uploads/2016/06/mint-limeade.jpg',
@@ -38,12 +38,29 @@ export class CocktailService {
       ]
     }
   ]);
-  public selectedcocktail$:BehaviorSubject<Cocktail>=new BehaviorSubject(this.cocktails$.value[0]);
+  public selectedcocktail$: BehaviorSubject<Cocktail> = new BehaviorSubject(this.cocktails$.value[0]);
   public selectCocktail(index: number): void {
-    this.selectedcocktail$.next(this.cocktails$.value[index]) 
+    this.selectedcocktail$.next(this.cocktails$.value[index])
   }
-  constructor() { 
-    
+  public getcocktail(index: number) {
+    const cocktail = this.cocktails$.value;
+    return cocktail[index]
+  }
+  public addcocktail(cocktail: Cocktail): void {
+    const value = this.cocktails$.value
+    this.cocktails$.next([...value, cocktail])
+  }
+  public editcocktail(editedcocktail: Cocktail): void {
+    const value = this.cocktails$.value
+    this.cocktails$.next(value.map((cocktail : Cocktail)=>{
+      if (cocktail.name===editedcocktail.name) {
+        return editedcocktail
+      } else {
+        return cocktail
+      }
+    }))
     
   }
+  constructor() { }
+
 }

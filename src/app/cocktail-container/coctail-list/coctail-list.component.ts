@@ -9,7 +9,7 @@ import { Cocktail } from 'src/app/shared/interfaces/coctail.interface';
 })
 export class CoctailListComponent implements OnInit {
 @Input() public cocktails?:Cocktail[];
-@Output() changeevent:EventEmitter<number>=new EventEmitter();
+ @Output() changeevent:EventEmitter<number>=new EventEmitter();
   constructor() { }
 
   ngOnInit(): void  {

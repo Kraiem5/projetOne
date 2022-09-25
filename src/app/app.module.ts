@@ -12,8 +12,9 @@ import { IngredientListComponent } from './ingredient-list/ingredient-list.compo
 import { PanierContainerComponent } from './ingredient-list/panier-container/panier-container.component';
 //routes
 import { app_routes } from './app.routes';
+import { CocktailFormComponent } from './cocktail-container/cocktail-form/cocktail-form.component';
 
-
+import { ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -25,14 +26,16 @@ import { app_routes } from './app.routes';
     CoctailListComponent,
     IngredientListComponent,
     PanierContainerComponent,
+    CocktailFormComponent,
     
   ],
 
   schemas:[CUSTOM_ELEMENTS_SCHEMA],
   imports: [
     BrowserModule,
-    
+    ReactiveFormsModule,
     RouterModule.forRoot(app_routes)
+    
     
   ],
   providers: [],

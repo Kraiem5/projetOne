@@ -7,15 +7,37 @@ import { Ingredient } from '../ingredient.interface';
 })
 export class PanierService {
 
-  public ingredients$ : BehaviorSubject<Ingredient[]> = new BehaviorSubject(null);
+  public ingredients$ : BehaviorSubject<Ingredient[]> = new BehaviorSubject<Ingredient[]>([]);
+  //public ingredients$ : BehaviorSubject<Ingredient[]> = new BehaviorSubject(null);
 
-  constructor() { }
-  public addToPanier(ingredients: Ingredient): void {
+  // constructor() { }
+  // public addToPanier(ingredients: Ingredient): void {
+  //   const currentValue = this.ingredients$.value;
+  //     let p=currentValue.push(value)
+  //     this.ingredients$.next(currentValue);
+  //   }
+  public addToPanier(ingredients: Ingredient[]): void {
     const currentValue = this.ingredients$.value;
-      let p=currentValue.push(value)
-      this.ingredients$.next(currentValue);
+    if (currentValue) {
+      const obj = [...currentValue , ...ingredients].reduce((acc:any, value) => {
+        if (acc[value.name]) {
+          acc[value.name] += value.quantity;
+        } else {
+          acc[value.name] = value.quantity
+        }
+        return acc
+      }, {});
+      const result = Object.keys(obj).map((key) => ({
+        name: key,
+        quantity: obj[key],
+      }));
+      this.ingredients$.next(result);
     }
+    else {
+      this.ingredients$.next(ingredients)
+    }
+  }
    
     
-  
+ 
 }
