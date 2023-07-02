@@ -12,6 +12,7 @@ export class PanierContainerComponent implements OnInit, OnDestroy {
   public ingredients?: Ingredient[];
   public subscription?: Subscription
   constructor(private panierservice: PanierService) { }
+  
 
   ngOnInit(): void {
     this.subscription = this.panierservice.ingredients$.subscribe(

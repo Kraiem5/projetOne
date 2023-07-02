@@ -1,13 +1,17 @@
 <div class="container d-flex flex-row">
 
-  <app-coctail-list  [cocktails]="cocktails" (changeevent)="selectCocktail($event)" class=" flex-50 pr-10">
+  <app-coctail-list 
+   [cocktails]="cocktails " 
+   (changeevent)="selectCocktail($event)"
+   class=" flex-50 pr-10">
   </app-coctail-list>
 
-
-
-  <app-coctail-details [cocktail]="selectedCocktails" class="flex-50 pl-10"></app-coctail-details>
-
-
+  <app-coctail-details 
+   *ngIf="selectedCocktails"
+   [cocktail]="selectedCocktails"
+    class="flex-50 pl-10">
+  </app-coctail-details>
 
 <div class="flex-50 pl-10">
   <router-outlet></router-outlet>
+ 

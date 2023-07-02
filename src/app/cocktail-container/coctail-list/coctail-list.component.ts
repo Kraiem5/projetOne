@@ -8,12 +8,13 @@ import { Cocktail } from 'src/app/shared/interfaces/coctail.interface';
   styleUrls: ['./coctail-list.component.css']
 })
 export class CoctailListComponent implements OnInit {
-@Input() public cocktails?:Cocktail[];
+  public search=''
+@Input() public cocktails!:Cocktail[];
  @Output() changeevent:EventEmitter<number>=new EventEmitter();
   constructor() { }
 
   ngOnInit(): void  {
-    
+    this.selectCocktail(0)
   }
   selectCocktail(index:number):void{
     this.changeevent.emit(index)

@@ -11,18 +11,26 @@ import { PanierService } from 'src/app/shared/interfaces/services/panier.service
 })
 export class CoctailDetailsComponent implements OnInit {
   @Input() public cocktail?: any
+  index?:any='0'
 
 
-
-  constructor(private panierservice: PanierService,) { }
+  constructor(private panierservice: PanierService,private activatedrouter:ActivatedRoute ) { }
 
   ngOnInit(): void {
-    //  this.activatedrouter.paramMap.subscribe((parammap:ParamMap)=>{
-    //   this.index=parammap.get('index');
-    //   console.log(this.index);
+     this.activatedrouter.paramMap.subscribe((parammap:ParamMap)=>{
+      this.index=parammap.get('index');
+      console.log(this.index);
+      // this.activatedrouter.paramMap.subscribe((parammap:ParamMap)=>{
+      
+      //   const ind=parammap.get('index')
+      
+      
+      // this.cocktailservice.getcocktail(parseInt('ind')).subscribe((cocktails:Cocktail)=>{
+      //   this.cocktail=cocktails
+      // });
 
-    //    this.cocktail= this.cocktailservice.getcocktail(this.index)
-    //})
+      //  this.cocktail= this.cocktailservice.getcocktail(this.index)
+    })
   }
   public add() {
     console.log(this.cocktail)

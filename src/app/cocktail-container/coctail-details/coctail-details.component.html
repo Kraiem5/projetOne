@@ -1,4 +1,4 @@
-<div class="d-flex flex-column ">
+<div *ngIf="cocktail" class="d-flex flex-column ">
   <img class="mb-20" [src]="cocktail.img" alt="coctail.name">
   <h3 class="mb-20">{{cocktail.name}}</h3>
   <p class="mb-20">{{cocktail.description}}</p>
@@ -11,7 +11,7 @@
 
 
   <div class="d-flex flex-rox flex-justify-content-between">
-    <button routerLink="edit" class="btn btn-primary">Editer le cocktail</button>
+    <button [routerLink]="[index,'edit']"  class="btn btn-primary">Editer le cocktail</button>
     <button class="btn btn-primary" (click)="add()">Ajouter un cocktail</button>
   </div>
 </div>

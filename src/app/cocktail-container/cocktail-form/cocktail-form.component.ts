@@ -10,37 +10,40 @@ import { CocktailService } from 'src/app/shared/interfaces/services/cocktail.ser
   styleUrls: ['./cocktail-form.component.css']
 })
 export class CocktailFormComponent implements OnInit {
-  cocktailform!: FormGroup
-  private router!: Router
+  cocktailform!: FormGroup;
+
   public cocktail?: Cocktail
   private activatedroute?: ActivatedRoute
 
-  public get ingredients() {
-    return this.cocktailform.get('ingredients') as FormArray
-  }
-  constructor(private fb: FormBuilder, private cocktailservice: CocktailService) { }
+
+  constructor(private fb: FormBuilder, private cocktailservice: CocktailService, private router: Router) { }
 
   ngOnInit(): void {
-    this.activatedroute?.paramMap.subscribe((paramMap: ParamMap) => {
-      const index = paramMap.get('index');
+    let index = this.activatedroute?.snapshot.params['index'];
+    
       if (index !== null) {
-        this.cocktail = this.cocktailservice.getcocktail(+index)
+         this.cocktailservice.getcocktail(parseInt(index)).subscribe((cocktail:Cocktail)=>{
+          this.cocktail=cocktail
+         })
+         this.initform(this.cocktail)
+      } else {
+        this.initform()
       }
-      this.initform(this.cocktail)
-    })
+
+    
 
 
 
   }
-  private initform(cocktail: Cocktail = { name: '', img: '', description: '', ingredients: [] }): void {
+  private initform(cocktail: Cocktail={ name: '', img: '', description: '', ingredients: [] }): void {
     this.cocktailform = this.fb.group({
       name: [cocktail.name, Validators.required],
       img: [cocktail.img, Validators.required],
       description: [cocktail.description, Validators.required],
       ingredients: this.fb.array(cocktail?.ingredients.map((ingredients) =>
         this.fb.group({
-          name: ingredients.name,
-          quantity: ingredients.quantity
+          name: [ingredients.name,Validators.required],
+          quantity: [ingredients.quantity,Validators.required]
         })), Validators.required)
     })
   }
@@ -56,10 +59,13 @@ export class CocktailFormComponent implements OnInit {
     if (this.cocktail) {
       this.cocktailservice.editcocktail(this.cocktailform.value)
     } else {
-      this.cocktailservice.addcocktail(this.cocktailform.value)
+      this.cocktailservice.addcocktail(this.cocktailform.value).subscribe()
     }
 
-    this.router.navigate(['..'], { relativeTo: this.activatedroute })
+    this.router.navigate(['/'], { relativeTo: this.activatedroute })
+  }
+  public get ingredients() {
+    return this.cocktailform.get('ingredients') as FormArray
   }
 
 }

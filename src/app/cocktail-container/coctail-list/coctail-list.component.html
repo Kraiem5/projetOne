@@ -1,11 +1,12 @@
 <div style="margin-right: 20px;">
     <h3 class="mb-20">liste des coctails</h3>
-    <ul class="mb-20">
+    <input type="text" class="mb-20 w-100" [(ngModel)]="search" placeholder="chercher un cocktail">
+    <ul *ngIf="cocktails" class="mb-20">
         <li  
         (click)="selectCocktail(index)" 
         [routerLink]="[index]"
         routerLinkActive="active"
-         *ngFor="let coc of cocktails ;
+         *ngFor="let coc of cocktails | filter:search ;
          let index = index">
             {{coc.name}}
         </li>

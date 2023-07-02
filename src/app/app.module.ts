@@ -2,6 +2,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+
+import {HttpClientModule} from '@angular/common/http'
 //component
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -14,7 +16,9 @@ import { PanierContainerComponent } from './ingredient-list/panier-container/pan
 import { app_routes } from './app.routes';
 import { CocktailFormComponent } from './cocktail-container/cocktail-form/cocktail-form.component';
 
-import { ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FilterPipe } from './shared/interfaces/pipes/filter.pipe';
+
 
 
 @NgModule({
@@ -27,11 +31,14 @@ import { ReactiveFormsModule} from '@angular/forms';
     IngredientListComponent,
     PanierContainerComponent,
     CocktailFormComponent,
+    FilterPipe,
     
   ],
 
   schemas:[CUSTOM_ELEMENTS_SCHEMA],
   imports: [
+    HttpClientModule,
+    FormsModule,
     BrowserModule,
     ReactiveFormsModule,
     RouterModule.forRoot(app_routes)
